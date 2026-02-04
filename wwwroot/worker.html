@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - WorkTimePro</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1>My Work Hours</h1>
+                <div class="header-actions">
+                    <span id="workerName" class="worker-name"></span>
+                    <button onclick="logout()" class="btn-secondary">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            
+            <!-- LIVE STATUS CARD -->
+            <div class="status-card-big" id="statusCardBig">
+                <div class="status-indicator" id="statusIndicator">
+                    <div class="status-dot"></div>
+                    <div class="status-text">Not Clocked In</div>
+                </div>
+                
+                <div class="live-timer" id="liveTimer">00:00:00</div>
+                <div class="timer-label" id="timerLabel">No active session</div>
+                
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button id="btnStart" onclick="startWork()" class="btn-action btn-start">
+                        ▶️ Start Work
+                    </button>
+                    <button id="btnPause" onclick="pauseWork()" class="btn-action btn-pause" style="display:none;">
+                        ⏸️ Pause
+                    </button>
+                    <button id="btnResume" onclick="resumeWork()" class="btn-action btn-resume" style="display:none;">
+                        ▶️ Resume
+                    </button>
+                    <button id="btnEnd" onclick="endWork()" class="btn-action btn-end" style="display:none;">
+                        ⏹️ End Day
+                    </button>
+                </div>
+            </div>
+
+            <!-- Worker Stats Grid - NEW LAYOUT -->
+            <div class="worker-stats-grid">
+                <div class="worker-stat-card">
+                    <div class="worker-stat-icon">📅</div>
+                    <div class="worker-stat-content">
+                        <p class="stat-label">Today</p>
+                        <h3 id="todayHours">0h 0m</h3>
+                    </div>
+                </div>
+                
+                <div class="worker-stat-card">
+                    <div class="worker-stat-icon">📊</div>
+                    <div class="worker-stat-content">
+                        <p class="stat-label">This Week</p>
+                        <h3 id="weekHours">0h 0m</h3>
+                    </div>
+                </div>
+                
+                <div class="worker-stat-card">
+                    <div class="worker-stat-icon">📊</div>
+                    <div class="worker-stat-content">
+                        <p class="stat-label">Week Progress</p>
+                        <h3 id="weekProgress">0h 0m / 40h</h3>
+                    </div>
+                </div>
+                
+                <div class="worker-stat-card">
+                    <div class="worker-stat-icon">📊</div>
+                    <div class="worker-stat-content">
+                        <p class="stat-label">This Month</p>
+                        <h3 id="monthHours">0h 0m</h3>
+                    </div>
+                </div>
+                
+                <div class="worker-stat-card">
+                    <div class="worker-stat-icon">⏸️</div>
+                    <div class="worker-stat-content">
+                        <p class="stat-label">Paused Time</p>
+                        <h3 id="pausedTime">0h 0m</h3>
+                    </div>
+                </div>
+                
+                <div class="worker-stat-card">
+                    <div class="worker-stat-icon">📈</div>
+                    <div class="worker-stat-content">
+                        <p class="stat-label">Total Sessions</p>
+                        <h3 id="totalSessions">0</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Work History -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h2>Work History</h2>
+                    <button onclick="refreshData()" class="btn-refresh">🔄 Refresh</button>
+                </div>
+                
+                <table class="workers-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Duration</th>
+                            <th>Paused</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sessionsTableBody">
+                        <tr>
+                            <td colspan="5" class="loading">Loading sessions...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    
+    <script src="js/worker.js"></script>
+</body>
+</html>

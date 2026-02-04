@@ -1,0 +1,33 @@
+# Build results
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Database files (temporary)
+*.db-shm
+*.db-wal
+
+# Visual Studio
+.vs/
+.vscode/
+
+# Migrations (optional - can regenerate)
+Migrations/
+
+# Tools
+sqlite3.exe
+*.sqbpro
+
+# Node modules (if any)
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db

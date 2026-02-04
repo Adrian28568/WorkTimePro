@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - WorkTimePro</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1>HR Dashboard</h1>
+                <div class="header-actions">
+                    <button onclick="openPayrollOverview()" class="btn-payroll">📊 Monthly Payroll Overview</button>
+                    <span id="adminName" class="admin-name"></span>
+                    <button onclick="logout()" class="btn-secondary">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <!-- Stats Cards - NEW ORDER -->
+            <div class="stats-grid">
+                <!-- 1. Total Workers -->
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <h3 id="totalWorkers">0</h3>
+                        <p>Total Workers</p>
+                    </div>
+                </div>
+                
+                <!-- 2. Total Time Today -->
+                <div class="stat-card">
+                    <div class="stat-icon">⏱️</div>
+                    <div class="stat-content">
+                        <h3 id="totalMinutesToday">0m</h3>
+                        <p>Total Time Today</p>
+                    </div>
+                </div>
+                
+                <!-- 3. Monthly Payroll -->
+                <div class="stat-card">
+                    <div class="stat-icon">💶</div>
+                    <div class="stat-content">
+                        <h3 id="monthlyPayroll">€0.00</h3>
+                        <p>Monthly Payroll</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Row -->
+            <div class="status-row">
+                <div class="status-item status-working">
+                    <span class="status-dot-big">🟢</span>
+                    <div class="status-info">
+                        <h3 id="workingNow">0</h3>
+                        <p>Working Now</p>
+                    </div>
+                </div>
+                
+                <div class="status-item status-paused-item">
+                    <span class="status-dot-big">🟡</span>
+                    <div class="status-info">
+                        <h3 id="pausedNow">0</h3>
+                        <p>Paused Right Now</p>
+                    </div>
+                </div>
+                
+                <div class="status-item status-idle-item">
+                    <span class="status-dot-big">🔴</span>
+                    <div class="status-info">
+                        <h3 id="notClockedIn">0</h3>
+                        <p>Not Clocked In Today</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workers Table -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h2>Workers Overview</h2>
+                    <button onclick="refreshData()" class="btn-refresh">🔄 Refresh</button>
+                </div>
+                
+                <table class="workers-table">
+                    <thead>
+                        <tr>
+                            <th>Worker</th>
+                            <th>Status</th>
+                            <th>Today</th>
+                            <th>This Week</th>
+                            <th>Monthly Earnings</th>
+                        </tr>
+                    </thead>
+                    <tbody id="workersTableBody">
+                        <tr>
+                            <td colspan="5" class="loading">Loading workers...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Worker Details Modal -->
+    <div id="workerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalWorkerName">Worker Details</h2>
+                <span class="modal-close" onclick="closeWorkerModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <p>Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Monthly Payroll Modal -->
+    <div id="payrollModal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>Monthly Payroll Overview</h2>
+                <span class="modal-close" onclick="closePayrollModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="payrollModalBody">
+                <p>Loading...</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/admin.js"></script>
+</body>
+</html>
